@@ -1,0 +1,60 @@
+<mat-card>
+  <mat-spinner *ngIf='isLoading'></mat-spinner>
+  <form [formGroup]="myForm" (submit)="onSavePatient()" *ngIf="!isLoading">
+    <div>
+      <mat-form-field class="col-12" appearance="outline">
+        <input matInput placeholder="Vorname ..." type="text" formControlName="vorname" minlength="3" required>
+        <mat-error *ngIf="myForm.get('vorname').invalid">Vorname bitte eingeben ...</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12" appearance="outline">
+        <input matInput placeholder="Name ..." type="text" formControlName="name" required>
+        <mat-error *ngIf="myForm.get('name').invalid">Name bitte eingeben ...</mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <mat-form-field class="col-6" appearance="outline">
+        <input class="btn form-control" matInput placeholder="telefon ..." type="number" formControlName="fone">
+        <mat-error *ngIf="myForm.get('fone').invalid">Telefon ...</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-6" appearance="outline">
+        <input class="btn form-control" matInput placeholder="email ..." type="email" formControlName="email">
+        <mat-error *ngIf="myForm.get('email').invalid">Telefon ...</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="col-4" appearance="outline">
+      <mat-label>Datum wählen ...</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div formGroupName="adresse">
+      <mat-form-field class="col-8" appearance="outline">
+        <input class="btn form-control" matInput placeholder="Strasse ..." type="text" formControlName="strasse">
+        <!-- <mat-error *ngIf="myForm.get('strasse').invalid">Strasse hinzufügen ...</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field class="col-2" appearance="outline">
+        <input matInput placeholder="Nr ..." type="number" formControlName="hausnummer">
+        <!-- <mat-error *ngIf="myForm.get('hausnummer').invalid">nummer hinzufügen ...</mat-error> -->
+      </mat-form-field><br>
+
+      <mat-form-field class="col-2" appearance="outline">
+        <input matInput placeholder="plz ..." type="number" formControlName="plz">
+        <!-- <mat-error *ngIf="myForm.get('plz').invalid">Plz hinzufügen ...</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field class="col-8" appearance="outline">
+        <input matInput placeholder="Ort ..." type="text" formControlName="ort">
+        <!-- <mat-error *ngIf="myForm.get('ort').invalid">Ort hinzufügen ...</mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="btn btn-primary card-link" color="accent" type="submit">Speichern</button>
+    <button mat-raised-button class="btn btn-primary card-link" color="primary" [routerLink]="['/']" >Cancel</button>
+  </form>
+</mat-card><br>
+
+
+

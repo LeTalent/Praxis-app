@@ -1,0 +1,67 @@
+<div class="my-container">
+  <form class="form-container">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Patienten suchen" #input>
+    </mat-form-field>
+  </form>
+  <br>
+  <div>
+    <button mat-raised-button color="primary" routerLink="/create-update">
+      <mat-icon routerLink="/">add_box</mat-icon>
+    </button>
+    <span class="mat-body-1">Neuer Patient hinzufügen</span>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="_vorname">
+      <th mat-header-cell *matHeaderCellDef> Vorname </th>
+      <td mat-cell *matCellDef="let element"> {{element.vorname}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="_name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="_email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="_telefonnummer">
+      <th mat-header-cell *matHeaderCellDef> Telefonnummer </th>
+      <td mat-cell *matCellDef="let element"> {{element.telefonnummer}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="_adresse">
+      <th mat-header-cell *matHeaderCellDef> Adresse </th>
+      <td mat-cell *matCellDef="let element"> {{element.adresse.strasse}} {{element.adresse.hausnummer}}, {{element.adresse.plz}} {{element.adresse.ort}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="_actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button class="btn btn-primary card-link" color="primary" routerLink="/create-update">EDIT</button>
+        <button mat-stroked-button class="btn btn-primary card-link" color="warn" >DELETE</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+</div>
+
+

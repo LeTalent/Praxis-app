@@ -1,0 +1,17 @@
+.my-container{
+  width: 90%;
+  margin: auto;
+}
+
+.form-container {
+  margin: 10px auto 0px auto;
+  text-align: center;
+  .mat-form-field {
+    width: 90%;
+  }
+}
+
+
+::ng-deep .mat-elevation-z8.mat-table {
+  width: 100%;
+}
